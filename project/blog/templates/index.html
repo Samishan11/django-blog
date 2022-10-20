@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+{% block content %}
+{% include 'navbar.html' %}
+<div class="container">
+    <div class="row ">
+        <div class="container-fluid col-md-4">
+            <div class="position-relative">
+                <span class="position-absolute px-5 text-light"
+                    style=" top:50%; left: 0; text-align: center; font-size: 20px; ">Lorem ipsum, dolor sit amet
+                    consectetur
+                    adipisicing elit. </span>
+                <img src="../../static/uploads/animals-6795732_1920.jpg" width="405" class="my-3 border rounded"
+                    style="object-fit: cover;" height="200" alt="">
+            </div>
+            <div class="position-relative">
+                <span class="position-absolute px-5 text-light"
+                    style=" left: 0; top: 50%; text-align: center; font-size: 20px; ">Lorem ipsum, dolor sit amet
+                    consectetur
+                    adipisicing elit. </span>
+                <img src="../../static/uploads/leopard-6786267_1920.jpg" width="405" class="my-3 border rounded"
+                    style="object-fit: cover;" height="200" alt="">
+            </div>
+        </div>
+        <!--  -->
+        <div class="container-fluid col-md-4 position-relative">
+            <span class="position-absolute px-5 text-light"
+                style=" top:50%; text-align: center; font-size: 20px;">Lorem, ipsum dolor sit amet consectetur
+                adipisicing elit. Reprehenderit sequi earum ipsum possimus tempora laudantium. </span>
+            <img src="../../static/uploads/animals-6795732_1920.jpg" class="mt-3 border rounded"
+                style="object-fit: cover;" height="430" width="400" alt="">
+
+        </div>
+        <!--  -->
+        <div class="container-fluid col-md-4 position-relative">
+            <div class="position-relative">
+                <span class="position-absolute px-5 text-light"
+                    style=" top:50%; left: 0; text-align: center; font-size: 20px; ">Lorem ipsum, dolor sit amet
+                    consectetur
+                    adipisicing elit. </span>
+                <img src="../../static/uploads/leopard-6786267_1920.jpg" width="405" class="my-3 border rounded"
+                    style="object-fit: cover;" height="200" alt="">
+            </div>
+            <div class="position-absolute">
+                <span class="position-absolute px-5 text-light"
+                    style=" top:50%; left: 0; text-align: center; font-size: 20px; ">Lorem ipsum, dolor sit amet
+                    consectetur
+                    adipisicing elit. </span>
+                <img src="../../static/uploads/animals-6795732_1920.jpg" width="405" class="my-3 border rounded"
+                    style="object-fit: cover;" height="200" alt="">
+            </div>
+        </div>
+    </div>
+</div>
+<!--  -->
+<div class="container py-5">
+    <p class="pb-3" style="font-size: 30px;">Recent Post</p>
+    <div class="row">
+        {% for blog in blog %}
+        <div class="col-md-4">
+            <!-- blog image -->
+            <a href="/blog/{{blog.id}}">
+                <img src="{{blog.image1}}" width="405" class="my-3 border rounded" style="object-fit: cover;"
+                    height="300" alt="">
+            </a>
+            <!-- catagory -->
+           <a href="/catagory/{{blog.catagory}}"> <span class="bg-primary border rounded text-light p-1">{{blog.catagory}}</span></a>
+            <div class="container d-flex justify-content-start my-3 ml-0">
+                <!-- user image -->
+                <img class="mx-2"
+                    src="https://scontent.fktm3-1.fna.fbcdn.net/v/t1.6435-9/s1080x2048/163010005_1372219383115867_5653984754757638142_n.jpg?_nc_cat=107&ccb=1-5&_nc_sid=e3f864&_nc_ohc=gvfLP712vjoAX_XmCaR&_nc_ht=scontent.fktm3-1.fna&oh=00_AT-FPTq4gd3KXo5TmKV4-0gAzbCLFC7HYoKoAQWhCmk6tg&oe=61F41E7D"
+                    style="object-fit: cover; border-radius: 50%;" height="30" width="30" alt="">
+                <!-- username -->
+                <p class="mx-2">Samishan Thapa</p>
+                <!--  -->
+                <i class="fas fa-heart text-danger">{{like}}</i>
+                <!-- date -->
+                <!-- <span>{{blog.create_at}}</span> -->
+            </div>
+            <div class="post-content-body">
+                <!-- blog title -->
+                <div class="title">
+                    <h5 class="text-dark px-2">{{blog.name}}</h5>
+                </div>
+                <!-- blog description -->
+                <div class="description">
+
+                    <p style="text-align: justify; text-justify: inter-word;" class="px-2">{{blog.desc }}</p>
+
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        <!--  -->
+
+    </div>
+</div>
+{% include 'footer.html' %}
+{% endblock %}

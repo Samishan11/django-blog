@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block content %}
+{% include 'navbar.html' %}
+
+<!--  -->
+<div class="container py-5">
+    <p class="pb-3" style="font-size: 30px;">Related Blogs</p>
+    <div class="row">
+        {% for blog in animal  %}
+        <div class="col-md-4">
+            <!-- blog image -->
+            <a href="/blog/{{blog.id}}">
+                <img src="{{blog.image1.url}}" width="405" class="my-3 border rounded" style="object-fit: cover;"
+                    height="300" alt="">
+            </a>
+            <!-- catagory -->
+            <span class="bg-primary border rounded text-light p-1">{{blog.catagory}}</span>
+            <div class="container d-flex justify-content-start my-3 ml-0">
+                <!-- user image -->
+                <img class="mx-2"
+                    src="https://scontent.fktm3-1.fna.fbcdn.net/v/t1.6435-9/s1080x2048/163010005_1372219383115867_5653984754757638142_n.jpg?_nc_cat=107&ccb=1-5&_nc_sid=e3f864&_nc_ohc=gvfLP712vjoAX_XmCaR&_nc_ht=scontent.fktm3-1.fna&oh=00_AT-FPTq4gd3KXo5TmKV4-0gAzbCLFC7HYoKoAQWhCmk6tg&oe=61F41E7D"
+                    style="object-fit: cover; border-radius: 50%;" height="30" width="30" alt="">
+                <!-- username -->
+                <p class="mx-2">Samishan Thapa</p>
+                <!--  -->
+                <i class="fas fa-heart text-danger">{{like}}</i>
+                <!-- date -->
+                <!-- <span>{{blog.create_at}}</span> -->
+            </div>
+            <div class="post-content-body">
+                <!-- blog title -->
+                <div class="title">
+                    <h5 class="text-dark px-2">{{blog.name}}</h5>
+                </div>
+                <!-- blog description -->
+                <div class="description">
+
+                    <p style="text-align: justify; text-justify: inter-word;" class="px-2">{{blog.desc }}</p>
+
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        <!--  -->
+
+    </div>
+</div>
+{% include 'footer.html' %}
+{% endblock %}

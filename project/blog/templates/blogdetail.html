@@ -1,0 +1,260 @@
+{% extends 'base.html' %}
+{% block content %}
+{% include 'navbar.html' %}
+<div class="contianer">
+    <div class="container-fluid">
+        <div class="card">
+            {% if blog.image1 %}
+            <img src="{{blog.image1.url}}" class="img-fluid" style="max-width: 100%; height:80vh; object-fit: cover;"
+                alt="">
+            {% else%}
+            <h4 class="text-center ">No Photo uploded</h4>
+            {% endif%}
+        </div>
+        <section class="site-section py-lg">
+            <div class="container">
+                <div class="row blog-entries element-animate main-content">
+                    <div class="col-md-8">
+                        <div class="post-content-body py-3">
+                            <div class="container icons py-2 d-flex align-items-center">
+                                <form method="post" action="/like/{{blog.id}}/">
+                                    {% csrf_token %}
+                                    <input type="hidden" value="{{blog.id}}">
+                                    {% if like %}
+                                    <button class="btn btn-lg btn-outline-none"><i
+                                            class="fas fa-heart text-danger h3"></i></button>
+                                    {% else %}
+                                    <button class="btn btn-lg btn-outline-none"><i
+                                            class="fas fa-heart text-warning h3"></i></button>
+                                    {% endif %}
+                                    <p>{{like}}</p>
+
+                                </form>
+                            </div>
+                            <h4 class="text-primary">{{blog.name}}</h4>
+                            <p style="text-align: justify; text-justify: inter-word;">{{blog.desc}}
+                            </p>
+                            <div class="row">
+                                <div class="col-md-6 my-2">
+                                    {% if blog.image1 %}
+                                    <img src="{{blog.image1.url}}" class="img-fluid"
+                                        style="max-width: 100%; height:40vh; object-fit: cover;" alt="">
+                                    {% else%}
+                                    <h4 class="text-center ">No Photo uploded</h4>
+                                    {% endif%}
+                                </div>
+                                <div class="col-md-6 my-2">
+                                    {% if blog.image1 %}
+                                    <img src="{{blog.image1.url}}" class="img-fluid"
+                                        style="max-width: 100%; height:40vh; object-fit: cover;" alt="">
+                                    {% else%}
+                                    <h4 class="text-center ">No Photo uploded</h4>
+                                    {% endif%}
+                                </div>
+                                <div class="col-md-6 my-2">
+                                    {% if blog.image1 %}
+                                    <img src="{{blog.image1.url}}" class="img-fluid"
+                                        style="max-width: 100%; height:40vh; object-fit: cover;" alt="">
+                                    {% else%}
+                                    <h4 class="text-center ">No Photo uploded</h4>
+                                    {% endif%}
+                                </div>
+                                <div class="col-md-6 my-2">
+                                    {% if blog.image1 %}
+                                    <img src="{{blog.image1.url}}" class="img-fluid"
+                                        style="max-width: 100%; height:40vh; object-fit: cover;" alt="">
+                                    {% else%}
+                                    <h4 class="text-center ">No Photo uploded</h4>
+                                    {% endif%}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 py-5">
+                        <div class="post-body-content">
+                            <div class="container-fluid"
+                                style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
+                                <img src="https://scontent.fktm3-1.fna.fbcdn.net/v/t1.6435-9/s1080x2048/163010005_1372219383115867_5653984754757638142_n.jpg?_nc_cat=107&ccb=1-5&_nc_sid=e3f864&_nc_ohc=gvfLP712vjoAX_XmCaR&_nc_ht=scontent.fktm3-1.fna&oh=00_AT-FPTq4gd3KXo5TmKV4-0gAzbCLFC7HYoKoAQWhCmk6tg&oe=61F41E7D"
+                                    height="150" width="150" style="border-radius: 50%; object-fit: cover;" alt="">
+                                <a href="/profile.html" class="btn btn-outline-primary px-3 mt-3">Profile</a>
+                                <p class="text-center pt-3" style="font-size: 24px;">Samishan Thapa</p>
+                                <p class="text-center">Post at 20,Dec 2021</p>
+                                <div>
+                                    <a href="/updateblog/{{blog.id}}" class="btn btn-outline-success mx-1"><i
+                                            class="fas fa-pen"></i></a>
+
+                                    <a href="/deleteblog/{{blog.id}}" class="btn btn-outline-danger mx-1"><i
+                                            class="fas fa-trash"></i></a>
+
+                                </div>
+                                <div class="container mt-5">
+                                    <p class="text-center" style="font-size: 18px;">Catagory</p>
+                                    <hr>
+                                    <ul>
+                                        <li class="list-group-item"><a href="" class="nav-link">Animal</a></li>
+                                        <li class="list-group-item"><a href="" class="nav-link">Nature</a></li>
+                                        <li class="list-group-item"><a href="" class="nav-link">Books</a></li>
+                                        <li class="list-group-item"><a href="" class="nav-link">Universe</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- comment post -->
+            <div class="container-fluid">
+                <div class="d-flex justify-content-center row">
+                    <div class="col-md-8">
+                        <h4 class="text-secondary m-4 ">Comments</h4>
+                        <div class="d-flex flex-column comment-section">
+                            <!--  -->
+                            {% for comment in comment%}
+                            <div class="bg-white mb-3 p-2 shadow">
+                                <div class="d-flex flex-row user-info">
+                                    <img class="rounded-circle"
+                                        src="https://scontent.fktm3-1.fna.fbcdn.net/v/t1.6435-9/s1080x2048/163010005_1372219383115867_5653984754757638142_n.jpg?_nc_cat=107&ccb=1-5&_nc_sid=e3f864&_nc_ohc=gvfLP712vjoAX_XmCaR&_nc_ht=scontent.fktm3-1.fna&oh=00_AT-FPTq4gd3KXo5TmKV4-0gAzbCLFC7HYoKoAQWhCmk6tg&oe=61F41E7D"
+                                        style="object-fit: cover;" width="40" height="40">
+                                    <div class="d-flex flex-column justify-content-start mx-2">
+                                        <span class="d-block font-weight-bold name text-primary"
+                                            style="font-weight: 700; font-size: 18px;">Samishan Thapa</span>
+                                        <span class="date text-black-50" style="font-size: 12px;">commented at -
+                                            11,Dec 2021</span>
+                                    </div>
+                                </div>
+                                <div class="mt-2">
+                                    <p class="comment-text">{{comment.text}}</p>
+                                </div>
+                                <div class="bg-white">
+                                    <div class="d-flex flex-row fs-12">
+                                        <div class="like p-2 cursor">
+                                            <i class="fas fa-thumbs-up text-danger"></i>
+                                        </div>
+                                        <div class="like p-2 my-auto cursor">
+                                            <i id="cmnt" class="fas fa-comment text-danger"></i>
+                                        </div>
+                                        <div class="like p-2 cursor">
+                                            <a href="/deletecmnt/{{comment.id}}">
+                                                <i class="fa fa-trash text-danger"></i>
+                                            </a>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="replies bg-danger my-2 ">
+                                {% for reply in replies  %}
+                                {{reply}}
+                                <br>
+                                {% endfor %}
+                            </div>
+
+                            <!-- {% if comment.parent != "" %}
+                           
+                            {% else %}
+                            <div class="bg-white mb-3 p-2 shadow">
+                                <div class="d-flex flex-row user-info">
+                                    <img class="rounded-circle"
+                                        src="https://scontent.fktm3-1.fna.fbcdn.net/v/t1.6435-9/s1080x2048/163010005_1372219383115867_5653984754757638142_n.jpg?_nc_cat=107&ccb=1-5&_nc_sid=e3f864&_nc_ohc=gvfLP712vjoAX_XmCaR&_nc_ht=scontent.fktm3-1.fna&oh=00_AT-FPTq4gd3KXo5TmKV4-0gAzbCLFC7HYoKoAQWhCmk6tg&oe=61F41E7D"
+                                        style="object-fit: cover;" width="40" height="40">
+                                    <div class="d-flex flex-column justify-content-start mx-2">
+                                        <span class="d-block font-weight-bold name text-primary"
+                                            style="font-weight: 700; font-size: 18px;">Samishan Thapa</span>
+                                        <span class="date text-black-50" style="font-size: 12px;">commented at -
+                                            11,Dec 2021</span>
+                                    </div>
+                                </div>
+                                <div class="mt-2">
+                                    <p class="comment-text">{{comment.text}}</p>
+                                </div>
+                                <div class="bg-white">
+                                    <div class="d-flex flex-row fs-12">
+                                        <div class="like p-2 cursor">
+                                            <i class="fas fa-thumbs-up text-danger"></i>
+                                        </div>
+                                        <div class="like p-2 my-auto cursor">
+                                            <i id="cmnt" class="fas fa-comment text-danger"></i>
+                                        </div>
+                                        <div class="like p-2 cursor">
+                                            <i class="fa fa-share text-danger"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> -->
+
+                            <!-- {% endif%} -->
+
+                            <!--  -->
+                            <!-- {% if replycomment %}
+                            <div class="bg-white mx-5 mb-3 p-2 shadow">
+                                <div class="d-flex flex-row user-info">
+                                    <img class="rounded-circle"
+                                        src="https://scontent.fktm3-1.fna.fbcdn.net/v/t1.6435-9/s1080x2048/163010005_1372219383115867_5653984754757638142_n.jpg?_nc_cat=107&ccb=1-5&_nc_sid=e3f864&_nc_ohc=gvfLP712vjoAX_XmCaR&_nc_ht=scontent.fktm3-1.fna&oh=00_AT-FPTq4gd3KXo5TmKV4-0gAzbCLFC7HYoKoAQWhCmk6tg&oe=61F41E7D"
+                                        style="object-fit: cover;" width="40" height="40">
+                                    <div class="d-flex flex-column justify-content-start mx-2">
+                                        <span class="d-block font-weight-bold name text-primary"
+                                            style="font-weight: 700; font-size: 18px;">Samishan Thapa</span>
+                                        <span class="date text-black-50" style="font-size: 12px;">replied at -
+                                            11,Dec 2021</span>
+                                    </div>
+                                </div>
+                                <div class="mt-2">
+                                    <p class="comment-text">{{replycomment.text}}</p>
+                                </div>
+                                <div class="bg-white">
+                                    <div class="d-flex flex-row fs-12">
+                                        <div class="like p-2 cursor">
+                                            <i class="fas fa-thumbs-up text-danger"></i>
+                                        </div>
+                                        <div class="like p-2 cursor">
+                                            <i onclick="onClick()" id="cmnt" class="fas fa-comment text-danger"></i>
+                                        </div>
+                                        <div class="like p-2 cursor">
+                                            <i class="fa fa-share text-danger"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% else %}
+                            {% endif%} -->
+                            <!--  -->
+                            <form name="comment" method="post">
+                                {% csrf_token %}
+                                <div class="bg-light p-2">
+                                    <div class="d-flex flex-row align-items-start">
+                                        <input type="hidden" name="_COMMENT_ID" value="{{comment.id}}">
+                                        <textarea name="comment"
+                                            class="form-control ml-1 shadow-none textarea"></textarea>
+                                    </div>
+                                    <div class="mt-2 text-right">
+                                        <button class="btn btn-primary btn-sm shadow-none" type="submit">Reply</button>
+                                    </div>
+                                </div>
+                            </form>
+                            <!--  -->
+                            {% endfor %}
+                            <!-- <button onclick="ff()" >click</button> -->
+                            <!-- comment post form -->
+                            <form name="comment" method="post">
+                                {% csrf_token %}
+                                <div class="bg-light p-2">
+                                    <div class="d-flex flex-row align-items-start">
+                                        <textarea name="comment"
+                                            class="form-control ml-1 shadow-none textarea"></textarea>
+                                    </div>
+                                    <div class="mt-2 text-right">
+                                        <button class="btn btn-primary btn-sm shadow-none"
+                                            type="submit">comment</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+{% include 'footer.html' %}
+<!-- -->
+{% endblock %}

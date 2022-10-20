@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% block content %}
+{% include 'navbar.html' %}
+<div class="container pb-3">
+    <h3 class="text-center">Update a blog</h3>
+    <div class="row">
+        <div class="col-md-12 col-md-offset-2">
+            {% if blog.image1 %}
+            <img id="img" src="{{blog.image1.url}}" class="img-fluid my-3"
+                style="display: flex; justify-content: center; align-items: center;"
+                style="max-width: 100%; height:30vh; object-fit: cover;" alt="">
+            {% else %}
+            <img id="img" src="" class="img-fluid my-3"
+                style="display: flex; justify-content: center; align-items: center;"
+                style="max-width: 100%; height:30vh; object-fit: cover;" alt="">
+            {% endif %}
+            <form method="post" action="" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group ">
+
+                    <!-- <input id="img_field1" type="hidden" class="form-control" name="image_1" aria-describedby="image_1"
+                        accept="image/*" value="{{blog.image1}}" /> -->
+                    <input id="img_field" type="file" class="form-control" name="image_1" aria-describedby="image_1"
+                        accept="image/*" value="{{blog.image1}}" />
+                    <!-- <script>
+                        document.getElementById('img_field').onclick = () => {
+                            var val = document.getElementById('img_field1').value;
+                            console.log(val);
+                        }
+                    </script> -->
+
+                </div>
+                <div class="form-group">
+                    <label for="title">Title <span class="require">*</span></label>
+                    <input type="text" class="form-control" name="name" value="{{blog.name}}" />
+                </div>
+                <div class="form-group">
+                    <label for="title">Catagory <span class="require">*</span></label>
+                    <select class="form-select" name="catagory" aria-label="Default select example">
+                        <!-- <option selected>Open this select menu</option> -->
+                        <option value="{{blog.catagory}}">{{blog.catagory}}</option>
+                        <option value="nature">Nature</option>
+                        <option value="animal">Animal</option>
+                        <option value="travel">Travel</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea rows="5" aria-valuetext="" class="form-control"
+                        name="description">{{blog.desc}}</textarea>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-outline-success mt-2 px-5">Update</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    img_field.onchange = evt => {
+        const [file] = img_field.files
+        if (file) {
+            img.src = URL.createObjectURL(file)
+        }
+    }
+</script>
+{% include 'footer.html' %}
+{% endblock %}
